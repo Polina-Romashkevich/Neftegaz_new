@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>{% block title %} 1 | {% endblock %}</title>
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+    {% block stylesheets %}
+    <!-- Stylesheets -->
+    <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="/css/main.css" />
+    {% endblock %}
+</head>
+{% block body %}
+<body>
+
+    {% block modal %}
+
+        <!-- histogramModal -->
+        <div class="modal fade" id="histogramModal" tabindex="-1" role="dialog" aria-labelledby="histogramModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="histogramModalLabel">Столбчатая диаграмма</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close" required>
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form action="/diagram/histogram" method="post">
+                            <div class="form-group">
+                                <label for="buildGraphForm">Столбец</label>
+                                <select  class="form-control" id="buildGraphForm" name="buildGraphForm">
+                                    <option value="1">K1</option>
+                                    <option value="2">K2</option>
+                                    <option value="3">K3</option>
+                                    <option value="4">K4</option>
+                                    <option value="5">K5</option>
+                                    <option value="co">Компании</option>
+                                    <option value="po">Подразделения</option>
+                                    <option value="so">Сотрудники</option>
+                                </select>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-dark" data-dismiss="modal">Закрыть</button>
+                                <button type="submit" class="btn btn-outline-dark">Построить</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- diagramPie -->
+        <div class="modal fade" id="diagramPie" tabindex="-1" role="dialog" aria-labelledby="diagramPieLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="diagramPieLabel">Круговая диаграмма</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close" required>
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form action="/diagram/pie" method="post">
+                            <div class="form-group">
+                                <label for="buildGraphForm">Столбец</label>
+                                <select class="form-control" id="buildGraphForm" name="buildGraphForm">
+                                    <option value="1">K1</option>
+                                    <option value="2">K2</option>
+                                    <option value="3">K3</option>
+                                    <option value="4">K4</option>
+                                    <option value="5">K5</option>
+                                    <option value="co">Компании</option>
+                                    <option value="po">Подразделения</option>
+                                    <option value="so">Сотрудники</option>
+                                </select>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-dark" data-dismiss="modal">Закрыть</button>
+                                <button type="submit" class="btn btn-outline-dark">Построить</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- diagramLine -->
+        <div class="modal fade" id="diagramLine" tabindex="-1" role="dialog" aria-labelledby="diagramLineLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="diagramLineLabel">Линейная диаграмма</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close" required>
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form action="/diagram/line" method="post">
+                            <div class="form-group">
+                                <label for="buildGraphForm">Столбец</label>
+                                <select class="form-control" id="buildGraphForm" name="buildGraphForm">
+                                    <option value="1">K1</option>
+                                    <option value="2">K2</option>
+                                    <option value="3">K3</option>
+                                    <option value="4">K4</option>
+                                    <option value="5">K5</option>
+                                    <option value="co">Компании</option>
+                                    <option value="po">Подразделения</option>
+                                    <option value="so">Сотрудники</option>
+                                </select>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-dark" data-dismiss="modal">Закрыть</button>
+                                <button type="submit" class="btn btn-outline-dark">Построить</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- calculationModal -->
+        <div class="modal fade" id="calculationModal" tabindex="-1" role="dialog" aria-labelledby="calculationModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="calculationModalLabel">Посчитать коэффициент</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close" required>
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form action="/coefficient" method="post">
+                            <div class="form-group">
+                                <label for="company_name" class="col-form-label">Компания:</label>
+                                <input type="text" class="form-control" id="company_name" name="company" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="coefficient" class="col-form-label">Коэффициент:</label>
+                                <select class="form-control" id="coefficient" name="coefficient">
+                                    <option value="1">K1</option>
+                                    <option value="2">K2</option>
+                                    <option value="3">K3</option>
+                                    <option value="4">K4</option>
+                                    <option value="5">K5</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="index-2" class="col-form-label">Временной промежуток</label>
+                                <input class="form-control" type="text" id="period" name="period" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="index-1" class="col-form-label">Показатель 1:</label>
+                                <input class="form-control" type="number" id="index_1" name="index_1" step="any" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="index-2" class="col-form-label">Показатель 2:</label>
+                                <input class="form-control" type="number" id="index_2" name="index_2" step="any" required>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-dark" data-dismiss="modal">Закрыть</button>
+                                <button type="submit" class="btn btn-outline-dark">Вычислить</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- addCompanyModal -->
+        <div class="modal fade" id="addCompanyModal" tabindex="-1" role="dialog" aria-labelledby="addCompanyModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="addCompanyModalLabel">Добавить компанию</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close" required>
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form action="/company" method="post">
+                            <div class="form-group">
+                                <label for="company-name" class="col-form-label">Наименование</label>
+                                <input type="text" class="form-control" id="company-name" name="name" required>
+
+                                <label for="company-name" class="col-form-label">Адрес</label>
+                                <input type="text" class="form-control" id="address" name="location" required>
+
+                                <label for="company-name" class="col-form-label">ИНН</label>
+                                <input type="text" class="form-control" id="inn" name="taxpayer_num" required>
+
+                                <label for="index-1" class="col-form-label">Количество подразделений</label>
+                                <input class="form-control" type="number" id="number_sub" name="unit_num" min="0" required>
+
+                                <label for="index-1" class="col-form-label">Количество сотрудников</label>
+                                <input class="form-control" type="number" id="number_co" name="employees_num" min="1" required>
+
+                                <label for="index-1" class="col-form-label">Род деятельности</label>
+                                <input class="form-control" type="number" id="career" name="sort_activity" min="1" required>
+
+                                <label for="index-1" class="col-form-label">Инвестиции в НИОКР</label>
+                                <input class="form-control" type="number" id="niokr" name="investment" min="0" required>
+
+                                <label for="index-1" class="col-form-label">Количество патентов</label>
+                                <input class="form-control" type="number" id="number_pa" name="patent_num" min="0" required>
+
+                                <label for="index-1" class="col-form-label">Количество заявок на патенты</label>
+                                <input class="form-control" type="number" id="number_re_pa" name="patent_application_num" min="0" required>
+
+                                <label for="index-1" class="col-form-label">Количество цитат на 1 патент</label>
+                                <input class="form-control" type="number" id="number_c1_pa" name="quote_num" min="0" required>
+
+                                <label for="index-1" class="col-form-label">Количество исследований</label>
+                                <input class="form-control" type="number" id="number_re" name="research_num" min="0" required>
+
+                                <label for="index-1" class="col-form-label">Количество публикаций</label>
+                                <input class="form-control" type="number" id="number_pu" name="publication_num" min="0" required>
+
+                                <label for="index-1" class="col-form-label">Чистая прибыль</label>
+                                <input class="form-control" type="number" id="net_profit" name="net_profit" min="0" required>
+
+                                <label for="index-1" class="col-form-label">Нематериальный активы</label>
+                                <input class="form-control" type="number" id="ne_active" name="intangible_asset" min="0" required>
+
+                                <label for="index-1" class="col-form-label">Себестоимость добычи нефти</label>
+                                <input class="form-control" type="number" id="price_oil" name="cost_oil_production" min="0" required>
+
+                                <label for="index-1" class="col-form-label">Добыча нефти</label>
+                                <input class="form-control" type="number" id="get_oil" name="oil_production" min="0" required>
+
+                                <label for="index-1" class="col-form-label">Временной промежуток</label>
+                                <input type="text" class="form-control" id="period" name="period" required>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-dark" data-dismiss="modal">Закрыть</button>
+                                <button type="submit" class="btn btn-outline-dark">Добавить</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <!-- addDivisionModal -->
+    <div class="modal fade" id="addDivisionModal" tabindex="-1" role="dialog" aria-labelledby="addDivisionModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="addDivisionModalLabel">Добавить подразделение компании</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" required>
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form action="/division" method="post">
+                        <div class="form-group">
+                            <label for="division-name" class="col-form-label">Наименование</label>
+                            <input type="text" class="form-control" id="division-name" name="name" required>
+
+                            <label for="division-name" class="col-form-label">Адрес</label>
+                            <input type="text" class="form-control" id="address" name="location" required>
+
+                            <label for="division-name" class="col-form-label">ИНН</label>
+                            <input type="text" class="form-control" id="inn" name="taxpayer_num" required>
+
+                            <label for="index-1" class="col-form-label">Количество сотрудников</label>
+                            <input class="form-control" type="number" id="number_co" name="employees_num" min="1" required>
+
+                            <label for="index-1" class="col-form-label">Род деятельности</label>
+                            <input class="form-control" type="number" id="career" name="sort_activity" min="1" required>
+
+                            <label for="index-1" class="col-form-label">Количество патентов</label>
+                            <input class="form-control" type="number" id="number_pa" name="patent_num" min="0" required>
+
+                             <label for="index-1" class="col-form-label">Временной промежуток</label>
+                            <input type="text" class="form-control" id="period" name="period" required>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-dark" data-dismiss="modal">Закрыть</button>
+                            <button type="submit" class="btn btn-outline-dark">Добавить</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+        <!-- addEmployeesModal -->
+        <div class="modal fade" id="addEmployeesModal" tabindex="-1" role="dialog" aria-labelledby="addEmployeesModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="addEmployeesModalLabel">Добавить сотрудника</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close" required>
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form action="/employees" method="post">
+                            <div class="form-group">
+                                <label for="employees-name" class="col-form-label">ФИО</label>
+                                <input type="text" class="form-control" id="employees-name" name="name" required>
+
+                                <label for="employees-name" class="col-form-label">Должность</label>
+                                <input type="text" class="form-control" id="post" name="post" required>
+
+                                <label for="index-1" class="col-form-label">Финансирование</label>
+                                <input class="form-control" type="number" id="financing" name="financing" min="0" required>
+
+                                <label for="index-1" class="col-form-label">Количество патентов</label>
+                                <input class="form-control" type="number" id="number_pa" name="patent_num" min="0" required>
+
+                                <label for="index-1" class="col-form-label">Количество заявок на патенты</label>
+                                <input class="form-control" type="number" id="number_re_pa" name="patent_application_num" min="0" required>
+
+                                <label for="index-1" class="col-form-label">Количество исследований</label>
+                                <input class="form-control" type="number" id="number_re" name="research_num" min="0" required>
+
+                                <label for="index-1" class="col-form-label">Количество публикаций</label>
+                                <input class="form-control" type="number" id="number_pu" name="publication_num" min="0" required>
+
+                                <label for="index-1" class="col-form-label">Временной промежуток</label>
+                                <input type="text" class="form-control" id="period" name="period" required>
+                            </div>
+
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-dark" data-dismiss="modal">Закрыть</button>
+                                <button type="submit" class="btn btn-outline-dark">Добавить</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endblock %}
+
+    {% block nav %}
+        <!-- navigationBar -->
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand" href="/">Нефтегазовые компании</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Добавление
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <button type="button" class="dropdown-item" style="cursor: pointer;" data-toggle="modal" data-target="#addCompanyModal">
+                                Компания
+                            </button>
+                            <button type="button" class="dropdown-item" style="cursor: pointer;" data-toggle="modal" data-target="#addDivisionModal">
+                                Подразделение
+                            </button>
+                            <button type="button" class="dropdown-item" style="cursor: pointer;" data-toggle="modal" data-target="#addEmployeesModal">
+                                Сотрудник
+                            </button>
+                        </div>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Удаление
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="/delete/company">Компания</a>
+                            <a class="dropdown-item" href="/delete/division">Подразделение</a>
+                            <a class="dropdown-item" href="/delete/employees">Сотрудник</a>
+                        </div>
+                    </li>
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Анализ
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <button type="button" class="dropdown-item" style="cursor: pointer;" data-toggle="modal" data-target="#histogramModal">
+                                Столбчатая диаграмма
+                            </button>
+                            <button type="button" class="dropdown-item" style="cursor: pointer;" data-toggle="modal" data-target="#diagramPie">
+                                Круговая диаграмма
+                            </button>
+                            <button type="button" class="dropdown-item" style="cursor: pointer;" data-toggle="modal" data-target="#diagramLine">
+                                Линейная диаграмма
+                            </button>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" data-toggle="modal" data-target="#calculationModal">Посчитать</a>
+                    </li>
+                </ul>
+
+                <ul class="navbar-nav ml-auto">
+					<span class="navbar-text">
+						Привет, {{ app.user.username }} |
+					</span>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/logout">Выйти</a>
+                    </li>
+                </ul>
+                <!-- <form class="form-inline my-2 my-lg-0"> -->
+                <!-- <input class="form-control mr-sm-2" type="search" placeholder="Строка поиска" aria-label="Search"> -->
+                <!-- <button class="btn btn-outline-dark my-2 my-sm-0" type="submit">Поиск</button> -->
+                <!-- </form> -->
+            </div>
+        </nav>
+    {% endblock %}
+
+    {% block container %}
+    <div class="container">
+        <div class="text-center mt-3">
+            {% block content %}
+            {% endblock %}
+        </div>
+    </div>
+    {% endblock %}
+
+    <br>
+    {% block javascripts %}
+        <script src="/js/jquery-3.3.1.min.js"></script>
+        <script src="/js/popper.min.js" ></script>
+        <script src="/js/bootstrap.min.js" ></script>
+        {% block js %}
+        {% endblock %}
+    {% endblock %}
+</body>
+{% endblock %}
+</html>

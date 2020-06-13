@@ -1,0 +1,57 @@
+{% extends 'base.html.twig' %}
+
+{% block nav %} {% endblock %}
+
+{% block title %} Авторизация {% endblock %}
+
+{% block container %}
+
+    {% if error %}
+        <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+    {% endif %}
+
+<div class="container py-5">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="row">
+                <div class="col-md-6 mx-auto">
+                    <div class="card rounded-0">
+                        <div class="card-header">
+                            <h3 class="mb-0">Авторизация</h3>
+                        </div>
+                        <div class="card-body">
+                            <form class="form" role="form" autocomplete="off" id="loginForm" novalidate="" action="{{ path('login') }}" method="post">
+                                <div class="form-group">
+                                    <label for="username">ФИО</label>
+                                    <input type="text" class="form-control form-control-lg rounded-0" name="_username" id="username" required="" value="{{ last_username }}"  placeholder="Введите ФИО">
+                                    <div class="invalid-feedback">Ошибка логина</div>
+                                </div>
+                                <div class="form-group">
+                                    <label>Пароль</label>
+                                    <input type="password" class="form-control form-control-lg rounded-0" name="_password" id="password" required="" autocomplete="new-password"  placeholder="Введите пароль">
+                                    <div class="invalid-feedback">Ошибка пароля</div>
+                                </div>
+                                <div>
+                                    <label>
+                                        <input type="checkbox" id="remember_me" name="_remember_me">
+                                        <span class="small text-dark">Запомнить меня</span>
+                                    </label>
+                                </div>
+                                <div>
+                                    <input type="hidden" name="_target_path" value="/" />
+                                </div>
+                                <a class="btn btn-outline-dark btn-sm" href="/register" role="button">
+                                    Нет аккаунта?
+                                </a>
+                                <hr>
+                                <button type="submit" class="btn btn-outline-dark btn-lg float-right" id="btnLogin">Войти</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

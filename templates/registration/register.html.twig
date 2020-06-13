@@ -1,0 +1,114 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Регистрация{% endblock %}
+
+{% block nav %} {% endblock %}
+
+{#{% block body %}
+
+{{ form_start(form) }}
+    {{ form_row(form.username) }}
+    {{ form_row(form.email) }}
+    {{ form_row(form.plainPassword.first) }}
+    {{ form_row(form.plainPassword.second) }}
+
+<button type="submit">Register!</button>
+{{ form_end(form) }}
+
+{% endblock %}#}
+
+
+{% block container %}
+
+    <div class="container py-5">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="row">
+                    <div class="col-md-6 mx-auto">
+                        <div class="card rounded-0">
+                            <div class="card-header">
+                                <h3 class="mb-0">Регистрация</h3>
+                            </div>
+                            <div class="card-body">
+                                {{ form_start(form) }}
+
+                                <div class="form-group">
+                                    {{ form_row(form.username) }}
+                                </div>
+                                <div class="form-group">
+                                    {{ form_row(form.company_name) }}
+                                </div>
+                                <div class="form-group">
+                                    {{ form_row(form.division_name) }}
+                                </div>
+                                <div class="form-group">
+                                    {{ form_row(form.email) }}
+                                </div>
+                                <div class="form-group">
+                                    {{ form_row(form.plainPassword.first) }}
+                                </div>
+                                <div class="form-group">
+                                    {{ form_row(form.plainPassword.second) }}
+                                </div>
+
+                                {{ form_end(form) }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+{% endblock %}
+
+
+
+
+
+
+
+{#
+{% block container %}
+
+    <div class="container py-5">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="row">
+                    <div class="col-md-6 mx-auto">
+                        <div class="card rounded-0">
+                            <div class="card-header">
+                                <h3 class="mb-0">Регистрация</h3>
+                            </div>
+                            <div class="card-body">
+                                <form class="form" role="form" autocomplete="off" id="loginForm" novalidate="" method="post">
+                                    <div class="form-group">
+                                        <label for="username">Логин</label>
+                                        <input type="text" class="form-control form-control-lg rounded-0" name="user[username]" id="username" required="">
+                                        <div class="invalid-feedback">Ошибка логина</div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="email">Email</label>
+                                        <input type="text" class="form-control form-control-lg rounded-0" name="user[email]" id="email" required="">
+                                        <div class="invalid-feedback">Ошибка email</div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Пароль</label>
+                                        <input type="password" class="form-control form-control-lg rounded-0" name="user[plainPassword][first]" id="password" required="" autocomplete="new-password">
+                                        <div class="invalid-feedback">Ошибка пароля</div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Пароль</label>
+                                        <input type="password" class="form-control form-control-lg rounded-0" name="user[plainPassword][second]" id="repassword" required="" autocomplete="new-password">
+                                        <div class="invalid-feedback">Ошибка повторения пароля</div>
+                                    </div>
+                                    <button type="submit" class="btn btn-outline-dark btn-lg float-right" id="btnLogin">Регистрация</button>
+                                    <input type="hidden" id="user__token" name="user[_token]"/></form>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+{% endblock %}#}

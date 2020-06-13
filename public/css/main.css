@@ -1,0 +1,61 @@
+.form-control:focus { /*поля  для ввода на форме*/
+	border-color: #646464;
+	box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(100, 100, 100, 100);
+}
+
+.dropdown-item:hover { //выпадающий_список
+	background-color: #646464;
+	color: #fff;
+}
+
+.canvasjs-chart-credit {
+	display: none;
+}
+
+.page-link:hover { /*страница-ссылка наводим мышку */
+	color: #fff;
+    background-color: #343a40;
+	border-color: #343a40;
+}
+
+.page-link:focus { /*тень квадратика с циферкой*/
+	border-color: #646464;
+	box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(100, 100, 100, 0.6);
+}
+
+.page-item.active .page-link { /*цвет циферки в активном состоянии в пагинации*/
+	color: #fff;
+    background-color: #343a40;
+	border-color: #343a40;
+}
+
+.page-item.disabled .page-link { /*цвет конечного квадратика (не можем нажать на него)*/
+	color: #d0d3d8;
+    background-color: #fff;
+	border-color: #343a40;
+}
+
+.page-link /*переключение страниц*/
+{
+	color: #000;
+    border-color: #343a40;
+}
+
+option:hover /*стиль выбборочного меню*/
+{
+	background-color: #646464;
+	color: #fff;
+}
+
+option {
+	-webkit-filter: grayscale(100%);
+    filter: grayscale(100%);
+}
+
+table.dataTable tbody>tr.selected,table.dataTable tbody>tr>.selected { /*выбранная строка или столбец в таблице*/
+	background-color: #343a40
+}
+
+.hidden { /*невидимо на экране*/
+  display: none;
+}
